@@ -12,7 +12,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 function loadTodos() {
   try {
     if (fs.existsSync(DATA_FILE)) {
-      return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
+      const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
+      // 이전 형식 호환
+      if (data.users) return data;
+      // 새로운 형식으로 변환
+      return { users: { 'public': data.todos || [] } };
     }
   } catch {}
   return { users: {} };
