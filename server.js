@@ -30,7 +30,6 @@ function getUserKey(user, password) {
   return 'public';
 }
 
-// 모든 TO DO 조회
 app.get('/api/todos', (req, res) => {
   const { user, password } = req.query;
   const store = loadTodos();
@@ -39,7 +38,6 @@ app.get('/api/todos', (req, res) => {
   res.json(todos);
 });
 
-// 새 TO DO 추가
 app.post('/api/todos', (req, res) => {
   const { task, dueDate, dueTime, priority, user, password } = req.body;
   if (!task || !dueDate) return res.status(400).json({ error: 'required fields missing' });
@@ -68,7 +66,6 @@ app.post('/api/todos', (req, res) => {
   res.status(201).json(todo);
 });
 
-// TO DO 완료 상태 토글
 app.patch('/api/todos/:id', (req, res) => {
   const { user, password } = req.query;
   const id = parseInt(req.params.id);
@@ -85,7 +82,6 @@ app.patch('/api/todos/:id', (req, res) => {
   res.json(todo);
 });
 
-// TO DO 삭제
 app.delete('/api/todos/:id', (req, res) => {
   const { user, password } = req.query;
   const id = parseInt(req.params.id);
