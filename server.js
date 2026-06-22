@@ -64,6 +64,6 @@ app.delete('/api/todos/:id', (req, res) => {
   res.json({ ok: true });
 });
 
-app.listen(PORT, 'localhost', () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ TO DO 서버 실행: http://localhost:${PORT}`);
 });
